@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-primary: #ef4444;
+  --color-secondary: #1a1a1a;
+  --color-accent: #3b82f6;
+  --color-background: #ffffff;
+  --color-foreground: #111827;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111827;
+  --primary: #ef4444;
+  --secondary: #1a1a1a;
+  --muted: #6b7280;
+  --border: #e5e7eb;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight text-secondary;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.news-card-hover {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+.sticky-header {
+  @apply sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-border;
+}
+
+.max-w-news {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100/50;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Prose fixes */
+.prose img {
+  @apply rounded-3xl shadow-xl;
+}
+
+.prose blockquote p {
+  @apply mb-0;
 }

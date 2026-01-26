@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Uplike News - Modern News Blog Platform
+
+A professional, high-performance news blog website built with Next.js, Tailwind CSS, and MongoDB.
+
+## Features
+
+- **Public Website**: Modern hero sections, category grids, trending news sidebar, and responsive article pages.
+- **Admin Panel**: Secure dashboard for managing posts, categories, and SEO settings.
+- **SEO Optimized**: Built-in support for meta titles, descriptions, slugs, and semantic HTML.
+- **AdSense Ready**: Strategic ad placement areas in header, sidebar, footer, and within articles.
+- **Clean UI**: Premium design inspired by leading news portals with a focus on readability.
+
+## Tech Stack
+
+- **Frontend**: Next.js 15 (App Router), TypeScript, Tailwind CSS
+- **Backend**: Next.js API Routes (Node.js)
+- **Database**: MongoDB with Mongoose
+- **Icons**: Lucide React
+- **Editor**: React Quill (Admin Panel)
 
 ## Getting Started
 
-First, run the development server:
+1. **Clone the repository**
+2. **Install dependencies**:
+   ```bash
+   npm install --legacy-peer-deps
+   ```
+3. **Set up Environment Variables**:
+   Copy `.env.example` to `.env.local` and fill in your MongoDB URI and JWT Secret.
+4. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+5. **Open [http://localhost:3000](http://localhost:3000)** to see the site.
+6. **Admin Access**: Go to `/admin/login`. (Default mock: admin@uplike.com / admin123)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Deployment
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project is ready to be deployed on **Vercel**. 
+Simply connect your GitHub repository to Vercel and it will automatically handle the build process.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## AdSense Approval Tips
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Ensure you have at least 15-20 original articles.
+- Fill out all legal pages (Privacy Policy, Terms, etc.).
+- Use the provided Ad placement areas responsibly.
+- Avoid duplicate or scraped content.
