@@ -6,6 +6,7 @@ import 'react-quill-new/dist/quill.snow.css';
 import { Save, X, Image as ImageIcon, Send, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import ImageUpload from '@/components/admin/ImageUpload';
 
 // Dynamically import ReactQuill to avoid SSR issues
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
@@ -242,20 +243,10 @@ export default function NewPost() {
                             </select>
                         </div>
 
-                        <div>
-                            <label className="block text-xs font-bold text-muted uppercase tracking-wider mb-2">Featured Image URL</label>
-                            <input
-                                type="text"
-                                name="featuredImage"
-                                value={formData.featuredImage}
-                                onChange={handleInputChange}
-                                placeholder="https://example.com/image.jpg"
-                                className="w-full bg-gray-50 border border-border rounded-lg py-3 px-4 text-sm focus:ring-primary focus:border-primary outline-none mb-4"
-                            />
-                            {formData.featuredImage && (
-                                <img src={formData.featuredImage} alt="Preview" className="w-full h-40 object-cover rounded-xl border border-border" />
-                            )}
-                        </div>
+                        <ImageUpload
+                            value={formData.featuredImage}
+                            onChange={(url) => setFormData(prev => ({ ...prev, featuredImage: url }))}
+                        />
 
                         <div>
                             <label className="block text-xs font-bold text-muted uppercase tracking-wider mb-2">Tags (Comma separated)</label>
