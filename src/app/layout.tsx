@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL("https://uplikenews.com"), // Replace with actual domain
+  other: {
+    "google-adsense-account": "ca-pub-6285124566181151",
+  },
 };
 
 export default function RootLayout({
