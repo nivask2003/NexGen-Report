@@ -20,7 +20,7 @@ async function getPostsByCategoryData(categoryId: string) {
     await dbConnect();
     try {
         const posts = await Post.find({ category: categoryId, status: 'published' })
-            .populate('category')
+            .populate({ path: 'category', model: Category })
             .sort({ createdAt: -1 })
             .limit(20)
             .lean();

@@ -6,11 +6,12 @@ import { Clock } from "lucide-react";
 import ShareButtons from "@/components/public/ShareButtons";
 import dbConnect from "@/lib/db";
 import Post from "@/models/Post";
+import Category from "@/models/Category";
 
 async function getPostData(slug: string) {
     await dbConnect();
     try {
-        const post = await Post.findOne({ slug, status: 'published' }).populate('category').lean();
+        const post = await Post.findOne({ slug, status: 'published' }).populate({ path: 'category', model: Category }).lean();
         return JSON.parse(JSON.stringify(post));
     } catch (error) {
         console.error("Error fetching post:", error);
@@ -54,7 +55,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         "author": [{
             "@type": "Person",
             "name": post.author || "Admin",
-            "url": "https://uplikenews.com"
+            "url": "https://trendwatch360.com"
         }]
     };
 
@@ -86,10 +87,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                         <div className="flex flex-col sm:flex-row sm:items-center gap-6 py-6 border-y border-border">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-full bg-gray-100 border border-border flex items-center justify-center text-secondary font-black text-xs">
-                                    {post.author ? post.author[0] : 'U'}
+                                    {post.author ? post.author[0] : 'T'}
                                 </div>
                                 <div>
-                                    <p className="text-sm font-black text-secondary">{post.author || 'Uplike News'}</p>
+                                    <p className="text-sm font-black text-secondary">{post.author || 'TrendWatch360'}</p>
                                     <p className="text-[10px] text-muted font-bold uppercase tracking-tighter">Lead Journalist</p>
                                 </div>
                             </div>

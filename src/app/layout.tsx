@@ -7,20 +7,20 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Uplike News - Latest Trending News & Updates",
-    template: "%s | Uplike News"
+    default: "TrendWatch360 - Latest Trending News & Updates",
+    template: "%s | TrendWatch360"
   },
-  description: "Stay updated with the latest news on technology, business, lifestyle, and more at Uplike News. Fast, reliable, and professional news reporting.",
-  keywords: ["news", "latest news", "trending topics", "technology", "business", "Uplike News"],
-  authors: [{ name: "Uplike News Team" }],
-  creator: "Uplike News",
-  publisher: "Uplike News",
+  description: "Stay updated with the latest news on technology, business, lifestyle, and more at TrendWatch360. Fast, reliable, and professional news reporting.",
+  keywords: ["news", "latest news", "trending topics", "technology", "business", "TrendWatch360"],
+  authors: [{ name: "TrendWatch360 Team" }],
+  creator: "TrendWatch360",
+  publisher: "TrendWatch360",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://uplikenews.com"), // Replace with actual domain
+  metadataBase: new URL("https://trendwatch360.com"), // Replace with actual domain
   other: {
     "google-adsense-account": "ca-pub-6285124566181151",
   },

@@ -1,4 +1,4 @@
-# Uplike News - Modern News Blog Platform
+# TrendWatch360 - Modern News Blog Platform
 
 A professional, high-performance news blog website built with Next.js, Tailwind CSS, and MongoDB.
 
@@ -32,7 +32,7 @@ A professional, high-performance news blog website built with Next.js, Tailwind 
    npm run dev
    ```
 5. **Open [http://localhost:3000](http://localhost:3000)** to see the site.
-6. **Admin Access**: Go to `/admin/login`. (Default mock: admin@uplike.com / admin123)
+6. **Admin Access**: Go to `/admin/login`. (Default mock: admin@trendwatch360.com / admin123)
 
 ## Deployment
 

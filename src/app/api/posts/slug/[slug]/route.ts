@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Post from '@/models/Post';
+import Category from '@/models/Category';
 
 export async function GET(
     req: NextRequest,
@@ -9,7 +10,7 @@ export async function GET(
     const { slug } = await params;
     await dbConnect();
     try {
-        const post = await Post.findOne({ slug }).populate('category');
+        const post = await Post.findOne({ slug }).populate({ path: 'category', model: Category });
         if (!post) {
             return NextResponse.json({ error: 'Post not found' }, { status: 404 });
         }

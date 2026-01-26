@@ -6,7 +6,7 @@ export default function ContactUs() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
                 <div>
                     <h1 className="text-5xl font-black text-secondary leading-tight mb-8">
-                        Get in touch with <br /><span className="text-primary">Uplike News</span>
+                        Get in touch with <br /><span className="text-primary">TrendWatch360</span>
                     </h1>
                     <p className="text-muted text-lg leading-relaxed mb-12">
                         Have a news tip, correction, or business inquiry? We'd love to hear from you. Fill out the form or reach out via our contact details.
@@ -19,7 +19,7 @@ export default function ContactUs() {
                             </div>
                             <div>
                                 <p className="text-xs font-bold text-muted uppercase tracking-widest">Email Us</p>
-                                <p className="text-xl font-bold text-secondary">contact@uplikenews.com</p>
+                                <p className="text-xl font-bold text-secondary">contact@trendwatch360.com</p>
                             </div>
                         </div>
 

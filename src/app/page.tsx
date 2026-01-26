@@ -11,7 +11,7 @@ async function getPosts() {
   await dbConnect();
   try {
     const posts = await Post.find({ status: 'published' })
-      .populate('category')
+      .populate({ path: 'category', model: Category })
       .sort({ createdAt: -1 })
       .limit(10)
       .lean();
@@ -26,7 +26,7 @@ async function getTrendingPosts() {
   await dbConnect();
   try {
     const posts = await Post.find({ status: 'published', isTrending: true })
-      .populate('category')
+      .populate({ path: 'category', model: Category })
       .sort({ createdAt: -1 })
       .limit(5)
       .lean();

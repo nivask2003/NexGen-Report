@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Post from '@/models/Post';
+import Category from '@/models/Category';
 
 export async function GET(req: NextRequest) {
     await dbConnect();
@@ -27,7 +28,7 @@ export async function GET(req: NextRequest) {
 
     try {
         const posts = await Post.find(filter)
-            .populate('category')
+            .populate({ path: 'category', model: Category })
             .sort({ createdAt: -1 })
             .limit(limit);
         return NextResponse.json(posts);

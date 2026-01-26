@@ -14,12 +14,12 @@ export async function GET() {
         // await Category.deleteMany({});
 
         // 2. Create Admin User if not exists
-        const adminExists = await User.findOne({ email: 'admin@uplike.com' });
+        const adminExists = await User.findOne({ email: 'admin@trendwatch360.com' });
         if (!adminExists) {
             const hashedPassword = await bcrypt.hash('admin123', 10);
             await User.create({
                 name: 'Admin User',
-                email: 'admin@uplike.com',
+                email: 'admin@trendwatch360.com',
                 password: hashedPassword,
                 role: 'admin'
             });

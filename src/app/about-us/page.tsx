@@ -1,15 +1,15 @@
 export default function AboutUs() {
     return (
         <div className="max-w-4xl mx-auto py-20 px-4">
-            <h1 className="text-5xl font-black mb-8 text-secondary text-center">About Uplike News</h1>
+            <h1 className="text-5xl font-black mb-8 text-secondary text-center">About TrendWatch360</h1>
             <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6">
                 <p>
-                    Welcome to <strong>Uplike News</strong>, your premier destination for high-quality journalism, trending stories, and in-depth analysis. We are committed to delivering accurate, timely, and engaging news content that matters to you.
+                    Welcome to <strong>TrendWatch360</strong>, your premier destination for high-quality journalism, trending stories, and in-depth analysis. We are committed to delivering accurate, timely, and engaging news content that matters to you.
                 </p>
 
                 <h2>Our Mission</h2>
                 <p>
-                    At Uplike News, our mission is to empower our readers with knowledge. In a world of information overload, we strive to cut through the noise and provide clear, concise, and reliable news across various sectors including technology, business, politics, and lifestyle.
+                    At TrendWatch360, our mission is to empower our readers with knowledge. In a world of information overload, we strive to cut through the noise and provide clear, concise, and reliable news across various sectors including technology, business, politics, and lifestyle.
                 </p>
 
                 <h2>What We Cover</h2>

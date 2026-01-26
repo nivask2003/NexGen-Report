@@ -43,7 +43,7 @@ const Header = () => {
       <div className="max-w-news h-16 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <Link href="/" className="text-2xl font-black tracking-tighter text-primary">
-            UPLIKE <span className="text-secondary tracking-normal">NEWS</span>
+            TRENDWATCH <span className="text-secondary tracking-normal">360</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
