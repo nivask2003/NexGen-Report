@@ -130,7 +130,6 @@ export default async function Home() {
                 <div className="w-2 h-8 bg-primary rounded-full" />
                 <h2 className="text-3xl font-black uppercase">Latest News</h2>
               </div>
-              <Link href="/latest" className="text-sm font-bold text-primary hover:underline">View All</Link>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
