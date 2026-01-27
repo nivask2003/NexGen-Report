@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/db';
 import Post from '@/models/Post';
 import Category from '@/models/Category';
@@ -35,6 +36,12 @@ export async function PUT(
         if (!post) {
             return NextResponse.json({ error: 'Post not found' }, { status: 404 });
         }
+
+        // Revalidate public pages
+        revalidatePath('/');
+        revalidatePath('/category/[slug]', 'page');
+        revalidatePath('/article/[slug]', 'page');
+
         return NextResponse.json(post);
     } catch (error) {
         return NextResponse.json({ error: 'Failed to update post' }, { status: 500 });
@@ -52,6 +59,12 @@ export async function DELETE(
         if (!post) {
             return NextResponse.json({ error: 'Post not found' }, { status: 404 });
         }
+
+        // Revalidate public pages
+        revalidatePath('/');
+        revalidatePath('/category/[slug]', 'page');
+        revalidatePath('/article/[slug]', 'page');
+
         return NextResponse.json({ message: 'Post deleted successfully' });
     } catch (error) {
         return NextResponse.json({ error: 'Failed to delete post' }, { status: 500 });

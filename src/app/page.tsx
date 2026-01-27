@@ -7,6 +7,8 @@ import dbConnect from "@/lib/db";
 import Post from "@/models/Post";
 import Category from "@/models/Category";
 
+export const dynamic = 'force-dynamic';
+
 async function getPosts() {
   await dbConnect();
   try {

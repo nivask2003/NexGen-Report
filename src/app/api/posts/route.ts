@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/db';
 import Post from '@/models/Post';
 import Category from '@/models/Category';
@@ -42,6 +43,12 @@ export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
         const post = await Post.create(body);
+
+        // Revalidate public pages
+        revalidatePath('/');
+        revalidatePath('/category/[slug]', 'page');
+        revalidatePath('/article/[slug]', 'page');
+
         return NextResponse.json(post, { status: 201 });
     } catch (error) {
         return NextResponse.json({ error: 'Failed to create post' }, { status: 500 });
