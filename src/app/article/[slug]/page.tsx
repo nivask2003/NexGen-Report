@@ -42,7 +42,7 @@ export async function generateMetadata(
             authors: [post.author || 'TrendWatch360 Team'],
             images: [
                 {
-                    url: post.featuredImage || '/og-image.jpg',
+                    url: post.featuredImage || '/og-image.png',
                     width: 1200,
                     height: 630,
                     alt: post.title,
@@ -54,7 +54,7 @@ export async function generateMetadata(
             card: 'summary_large_image',
             title: post.title,
             description: post.summary || post.content.substring(0, 160).replace(/<[^>]*>/g, ''),
-            images: [post.featuredImage || '/og-image.jpg'],
+            images: [post.featuredImage || '/og-image.png'],
         },
         alternates: {
             canonical: `https://trend-watch360.vercel.app/article/${slug}`,
@@ -129,11 +129,40 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         }]
     };
 
+    const breadcrumbJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://trend-watch360.vercel.app"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": post.category?.name || "News",
+                "item": `https://trend-watch360.vercel.app/category/${post.category?.slug}`
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": post.title,
+                "item": `https://trend-watch360.vercel.app/article/${post.slug}`
+            }
+        ]
+    };
+
     return (
         <div className="max-w-news py-6 md:py-10">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
             />
             {/* Breadcrumbs - Hidden on very small screens for better space */}
             <nav className="hidden sm:flex items-center gap-2 text-[10px] md:text-xs font-bold text-muted mb-6 uppercase tracking-widest border-b border-border/50 pb-4">

@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-image.jpg', // You should create this image or I can generate a prompt for it
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'TrendWatch360 News',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "TrendWatch360 - Latest Trending News & Updates",
     description: "Stay updated with the latest news on technology, business, lifestyle, and more at TrendWatch360.",
     creator: '@trendwatch360',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
@@ -74,7 +74,7 @@ export default function RootLayout({
     "@type": "Organization",
     "name": "TrendWatch360",
     "url": "https://trend-watch360.vercel.app",
-    "logo": "https://trend-watch360.vercel.app/og-image.jpg",
+    "logo": "https://trend-watch360.vercel.app/og-image.png",
     "sameAs": [
       "https://twitter.com/trendwatch360",
       "https://facebook.com/trendwatch360"
