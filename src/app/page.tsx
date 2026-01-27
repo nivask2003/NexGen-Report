@@ -69,11 +69,22 @@ export default async function Home() {
     }
   };
 
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": posts.map((post: any, index: number) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `https://trend-watch360.vercel.app/article/${post.slug}`,
+      "name": post.title
+    }))
+  };
+
   return (
     <div className="max-w-news py-10">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
       {/* Hero Section */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">

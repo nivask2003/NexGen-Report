@@ -69,9 +69,41 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TrendWatch360",
+    "url": "https://trend-watch360.vercel.app",
+    "logo": "https://trend-watch360.vercel.app/og-image.jpg",
+    "sameAs": [
+      "https://twitter.com/trendwatch360",
+      "https://facebook.com/trendwatch360"
+    ]
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "TrendWatch360",
+    "url": "https://trend-watch360.vercel.app",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://trend-watch360.vercel.app/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased min-h-screen flex flex-col`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6285124566181151"
