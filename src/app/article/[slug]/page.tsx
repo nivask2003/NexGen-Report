@@ -128,7 +128,15 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             "@type": "Person",
             "name": post.author || "Admin",
             "url": "https://www.nexgenreport.com"
-        }]
+        }],
+        "publisher": {
+            "@type": "Organization",
+            "name": "NexGen Report",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.nexgenreport.com/og-image.png"
+            }
+        }
     };
 
     const breadcrumbJsonLd = {

@@ -10,8 +10,28 @@ export const metadata: Metadata = {
 };
 
 export default function ContactUs() {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact NexGen Report",
+        "description": "Get in touch with NexGen Report. Send us your news tips, feedback, or business inquiries.",
+        "url": "https://www.nexgenreport.com/contact-us",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-555-000-0000",
+            "contactType": "customer service",
+            "email": "contact@nexgenreport.com",
+            "areaServed": "US",
+            "availableLanguage": "en"
+        }
+    };
+
     return (
         <div className="max-w-news py-20">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
                 <div>
                     <h1 className="text-5xl font-black text-secondary leading-tight mb-8">

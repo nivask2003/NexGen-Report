@@ -9,8 +9,28 @@ export const metadata: Metadata = {
 };
 
 export default function AboutUs() {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About NexGen Report",
+        "description": "Learn more about NexGen Report, our mission, and our commitment to high-quality journalism.",
+        "url": "https://www.nexgenreport.com/about-us",
+        "publisher": {
+            "@type": "Organization",
+            "name": "NexGen Report",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.nexgenreport.com/og-image.png"
+            }
+        }
+    };
+
     return (
         <div className="max-w-4xl mx-auto py-20 px-4">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <h1 className="text-5xl font-black mb-8 text-secondary text-center">About NexGen Report</h1>
             <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6">
                 <p>
