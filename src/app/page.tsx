@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import dbConnect from "@/lib/db";
 import Post from "@/models/Post";
 import Category from "@/models/Category";
+import CategoryCarousel from "@/components/public/CategoryCarousel";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
@@ -15,7 +16,7 @@ async function getPosts() {
     const posts = await Post.find({ status: 'published' })
       .populate({ path: 'category', model: Category })
       .sort({ createdAt: -1 })
-      .limit(10)
+      .limit(9)
       .lean();
     return JSON.parse(JSON.stringify(posts));
   } catch (error) {
@@ -39,9 +40,32 @@ async function getTrendingPosts() {
   }
 }
 
+async function getCategoryWisePosts() {
+  await dbConnect();
+  try {
+    const categories = await Category.find().limit(6).lean();
+    const categoryData = await Promise.all(categories.map(async (cat: any) => {
+      const posts = await Post.find({ category: cat._id, status: 'published' })
+        .sort({ createdAt: -1 })
+        .limit(8) // Fetch up to 8 for a better carousel experience, even if user asked for 4
+        .populate({ path: 'category', model: Category })
+        .lean();
+      return {
+        category: JSON.parse(JSON.stringify(cat)),
+        posts: JSON.parse(JSON.stringify(posts))
+      };
+    }));
+    return categoryData.filter(data => data.posts.length > 0);
+  } catch (error) {
+    console.error("Error fetching category wise posts:", error);
+    return [];
+  }
+}
+
 export default async function Home() {
   const posts = await getPosts();
   const trendingPosts = await getTrendingPosts();
+  const categoryWisePosts = await getCategoryWisePosts();
 
   if (posts.length === 0) {
     return (
@@ -54,7 +78,7 @@ export default async function Home() {
 
   const heroPost = posts[0];
   const secondaryPosts = posts.slice(1, 3);
-  const latestNews = posts.slice(3);
+  const latestNews = posts.slice(3, 9);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -149,7 +173,7 @@ export default async function Home() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
         {/* Left: Latest News */}
         <div className="lg:col-span-8 space-y-12">
           <div>
@@ -181,6 +205,17 @@ export default async function Home() {
         <div className="lg:col-span-4">
           <Sidebar trendingPosts={trendingPosts.length > 0 ? trendingPosts : posts.slice(0, 5)} />
         </div>
+      </div>
+
+      {/* Category Wise Sections */}
+      <div className="space-y-16">
+        {categoryWisePosts.map((item: any) => (
+          <CategoryCarousel
+            key={item.category._id}
+            category={item.category}
+            posts={item.posts}
+          />
+        ))}
       </div>
     </div>
   );
