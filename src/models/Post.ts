@@ -17,6 +17,7 @@ export interface IPost extends mongoose.Document {
     status: 'draft' | 'published';
     isTrending: boolean;
     views: number;
+    likes: number;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -38,6 +39,7 @@ const PostSchema = new mongoose.Schema({
     status: { type: String, enum: ['draft', 'published'], default: 'draft' },
     isTrending: { type: Boolean, default: false },
     views: { type: Number, default: 0 },
+    likes: { type: Number, default: 0 },
 }, { timestamps: true });
 
 export default mongoose.models.Post || mongoose.model<IPost>('Post', PostSchema);

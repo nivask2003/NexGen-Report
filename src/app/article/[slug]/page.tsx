@@ -6,6 +6,7 @@ import { Clock, Eye } from "lucide-react";
 import ShareButtons from "@/components/public/ShareButtons";
 import ViewTracker from "@/components/public/ViewTracker";
 import CommentForm from "@/components/public/CommentForm";
+import LikeButton from "@/components/public/LikeButton";
 import dbConnect from "@/lib/db";
 import Post from "@/models/Post";
 import Category from "@/models/Category";
@@ -205,7 +206,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-6 sm:ml-auto">
+                            <div className="flex flex-wrap items-center gap-4 sm:gap-6 sm:ml-auto">
                                 <div className="flex items-center gap-2 text-muted">
                                     <Clock size={16} />
                                     <span className="text-xs font-bold tracking-tight">{format(new Date(post.createdAt), 'MMM dd, yyyy')}</span>
@@ -214,7 +215,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                                     <Eye size={16} />
                                     <span className="text-xs font-bold tracking-tight">{post.views || 0} views</span>
                                 </div>
-                                <ShareButtons title={post.title} />
+                                <div className="h-4 w-[1px] bg-border hidden sm:block" />
+                                <div className="flex items-center gap-4">
+                                    <LikeButton slug={post.slug} initialLikes={post.likes || 0} />
+                                    <ShareButtons title={post.title} />
+                                </div>
                             </div>
                         </div>
                     </header>
