@@ -5,7 +5,19 @@ import Header from "./Header";
 import Footer from "./Footer";
 import ScrollToTop from "../public/ScrollToTop";
 
-export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
+interface Category {
+    _id: string;
+    name: string;
+    slug: string;
+}
+
+export default function LayoutWrapper({
+    children,
+    categories
+}: {
+    children: React.ReactNode,
+    categories: Category[]
+}) {
     const pathname = usePathname();
     const isAdminPage = pathname?.startsWith("/admin");
 
@@ -15,11 +27,11 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
 
     return (
         <>
-            <Header />
+            <Header initialCategories={categories} />
             <main className="flex-grow">
                 {children}
             </main>
-            <Footer />
+            <Footer initialCategories={categories} />
             <ScrollToTop />
         </>
     );

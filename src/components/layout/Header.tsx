@@ -13,8 +13,12 @@ interface Category {
   slug: string;
 }
 
-const Header = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
+interface HeaderProps {
+  initialCategories?: Category[];
+}
+
+const Header = ({ initialCategories = [] }: HeaderProps) => {
+  const [categories, setCategories] = useState<Category[]>(initialCategories);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -27,14 +31,16 @@ const Header = () => {
   const notificationRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetch('/api/categories')
-      .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data)) {
-          setCategories(data);
-        }
-      })
-      .catch(err => console.error('Failed to fetch categories:', err));
+    if (categories.length === 0) {
+      fetch('/api/categories')
+        .then(res => res.json())
+        .then(data => {
+          if (Array.isArray(data)) {
+            setCategories(data);
+          }
+        })
+        .catch(err => console.error('Failed to fetch categories:', err));
+    }
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);

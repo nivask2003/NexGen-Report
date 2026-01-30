@@ -10,19 +10,25 @@ interface Category {
     slug: string;
 }
 
-const Footer = () => {
-    const [categories, setCategories] = useState<Category[]>([]);
+interface FooterProps {
+    initialCategories?: Category[];
+}
+
+const Footer = ({ initialCategories = [] }: FooterProps) => {
+    const [categories, setCategories] = useState<Category[]>(initialCategories);
 
     useEffect(() => {
-        fetch('/api/categories')
-            .then(res => res.json())
-            .then(data => {
-                if (Array.isArray(data)) {
-                    setCategories(data);
-                }
-            })
-            .catch(err => console.error('Failed to fetch categories:', err));
-    }, []);
+        if (categories.length === 0) {
+            fetch('/api/categories')
+                .then(res => res.json())
+                .then(data => {
+                    if (Array.isArray(data)) {
+                        setCategories(data);
+                    }
+                })
+                .catch(err => console.error('Failed to fetch categories:', err));
+        }
+    }, [categories.length]);
 
 
     return (

@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
 import Script from "next/script";
+import dbConnect from "@/lib/db";
+import Category from "@/models/Category";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -68,11 +70,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await dbConnect();
+  const categoriesRaw = await Category.find({}).lean();
+  const categories = JSON.parse(JSON.stringify(categoriesRaw));
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -114,7 +119,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        <LayoutWrapper>
+        <LayoutWrapper categories={categories}>
           {children}
         </LayoutWrapper>
       </body>
